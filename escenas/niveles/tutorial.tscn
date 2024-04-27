@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmqxjsjsnf14c"]
+[gd_scene load_steps=8 format=3 uid="uid://bmqxjsjsnf14c"]
 
 [ext_resource type="PackedScene" uid="uid://d3gioiclnkwjn" path="res://escenas/niveles/nivel.tscn" id="1_ni4m5"]
 [ext_resource type="PackedScene" uid="uid://c4p47ic3duy58" path="res://escenas/npcs/police.tscn" id="2_6x7bv"]
 [ext_resource type="Script" path="res://escenas/niveles/tutorial.gd" id="2_saiao"]
 [ext_resource type="PackedScene" uid="uid://ct0h1iyfj7620" path="res://escenas/enemigos/gallina.tscn" id="3_308ba"]
+[ext_resource type="PackedScene" uid="uid://b1q3uxxktsbpl" path="res://escenas/guerreros/baño_quimico.tscn" id="5_0bpvy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jq6s5"]
-size = Vector2(92.1164, 7.59033)
+size = Vector2(92.1164, 11.1626)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjulx"]
-size = Vector2(85, 8.85675)
+size = Vector2(85, 11.3142)
 
 [node name="Tutorial" instance=ExtResource("1_ni4m5")]
 script = ExtResource("2_saiao")
@@ -22,7 +23,53 @@ layer_1/tile_data = PackedInt32Array(851968, 1048576, 25, 851969, 1114112, 25, 8
 layer_2/name = "Medio"
 layer_2/tile_data = PackedInt32Array(393232, 1245185, 57, 458768, 1245185, 58, 5, 1310721, 21, 65541, 1310721, 22, 6, 1376257, 21, 65542, 1376257, 22, -65535, 1179649, 20, 1, 1179649, 21, 65537, 1179649, 22, -65534, 1245185, 20, 2, 1245185, 21, 65538, 1245185, 22, 196625, 1507329, 19, 262161, 1507329, 20, 196613, 327681, 16, 262149, 327681, 17, 196614, 393217, 16, 262150, 393217, 17, 196615, 458753, 16, 262151, 458753, 17)
 
-[node name="NPCS" type="Node2D" parent="." index="2"]
+[node name="Areas donde girar" type="Node2D" parent="." index="2"]
+
+[node name="Derecha" type="Area2D" parent="Areas donde girar" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas donde girar/Derecha" index="0"]
+position = Vector2(198, 241)
+rotation = -0.495674
+shape = SubResource("RectangleShape2D_jq6s5")
+
+[node name="Arriba" type="Area2D" parent="Areas donde girar" index="1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas donde girar/Arriba" index="0"]
+position = Vector2(594, 230)
+rotation = 1.34914
+shape = SubResource("RectangleShape2D_jq6s5")
+
+[node name="Derecha2" type="Area2D" parent="Areas donde girar" index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas donde girar/Derecha2" index="0"]
+position = Vector2(595, 90)
+rotation = 0.47822
+shape = SubResource("RectangleShape2D_jq6s5")
+
+[node name="Abajo" type="Area2D" parent="Areas donde girar" index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas donde girar/Abajo" index="0"]
+position = Vector2(783, 112)
+rotation = -1.32994
+shape = SubResource("RectangleShape2D_yjulx")
+
+[node name="Derecha3" type="Area2D" parent="Areas donde girar" index="4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas donde girar/Derecha3" index="0"]
+position = Vector2(779, 294)
+rotation = -0.411898
+shape = SubResource("RectangleShape2D_jq6s5")
+
+[node name="Abajo2" type="Area2D" parent="Areas donde girar" index="5"]
+position = Vector2(857, 343)
+rotation = -0.144862
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas donde girar/Abajo2" index="0"]
+position = Vector2(23.1736, -41.0851)
+rotation = -1.12748
+shape = SubResource("RectangleShape2D_yjulx")
+
+[node name="NPCS" type="Node2D" parent="." index="3"]
 
 [node name="Police" parent="NPCS" index="0" instance=ExtResource("2_6x7bv")]
 position = Vector2(784, 574)
@@ -30,7 +77,7 @@ position = Vector2(784, 574)
 [node name="Police2" parent="NPCS" index="1" instance=ExtResource("2_6x7bv")]
 position = Vector2(943, 574)
 
-[node name="Enemigos" type="Node2D" parent="." index="3"]
+[node name="Enemigos" type="Node2D" parent="." index="4"]
 position = Vector2(192, -91)
 
 [node name="Gallina" parent="Enemigos" index="0" instance=ExtResource("3_308ba")]
@@ -44,58 +91,17 @@ position = Vector2(-9, 32)
 [node name="Gallina4" parent="Enemigos" index="3" instance=ExtResource("3_308ba")]
 position = Vector2(11, 19)
 
-[node name="AreasDondeGirar" type="Node2D" parent="." index="4"]
+[node name="Guerreros" type="Node2D" parent="." index="5"]
 
-[node name="Derecha" type="Area2D" parent="AreasDondeGirar" index="0"]
+[node name="Baño Quimico" parent="Guerreros" index="0" instance=ExtResource("5_0bpvy")]
+position = Vector2(449, 303)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreasDondeGirar/Derecha" index="0"]
-position = Vector2(206, 238)
-rotation = -0.598648
-shape = SubResource("RectangleShape2D_jq6s5")
+[node name="Baño Quimico2" parent="Guerreros" index="1" instance=ExtResource("5_0bpvy")]
+position = Vector2(975, 353)
 
-[node name="Derecha" type="Area2D" parent="AreasDondeGirar/Derecha" index="1"]
-
-[node name="Arriba" type="Area2D" parent="AreasDondeGirar" index="1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreasDondeGirar/Arriba" index="0"]
-position = Vector2(578, 227)
-rotation = 0.837758
-shape = SubResource("RectangleShape2D_jq6s5")
-
-[node name="Derecha2" type="Area2D" parent="AreasDondeGirar" index="2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreasDondeGirar/Derecha2" index="0"]
-position = Vector2(591, 99)
-rotation = 0.47822
-shape = SubResource("RectangleShape2D_jq6s5")
-
-[node name="Abajo" type="Area2D" parent="AreasDondeGirar" index="3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreasDondeGirar/Abajo" index="0"]
-position = Vector2(762, 107)
-rotation = -0.71733
-shape = SubResource("RectangleShape2D_yjulx")
-
-[node name="Derecha3" type="Area2D" parent="AreasDondeGirar" index="4"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreasDondeGirar/Derecha3" index="0"]
-position = Vector2(774, 287)
-rotation = -0.719076
-shape = SubResource("RectangleShape2D_jq6s5")
-
-[node name="Abajo2" type="Area2D" parent="AreasDondeGirar" index="5"]
-position = Vector2(857, 343)
-rotation = -0.144862
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreasDondeGirar/Abajo2" index="0"]
-position = Vector2(6.64041, -45.5182)
-rotation = -0.71733
-shape = SubResource("RectangleShape2D_yjulx")
-
-[connection signal="area_entered" from="AreasDondeGirar/Derecha" to="." method="_on_derecha_area_entered"]
-[connection signal="area_entered" from="AreasDondeGirar/Derecha/Derecha" to="." method="_on_derecha_area_entered"]
-[connection signal="area_entered" from="AreasDondeGirar/Arriba" to="." method="_on_arriba_area_entered"]
-[connection signal="area_entered" from="AreasDondeGirar/Derecha2" to="." method="_on_derecha_area_entered"]
-[connection signal="area_entered" from="AreasDondeGirar/Abajo" to="." method="_on_abajo_area_entered"]
-[connection signal="area_entered" from="AreasDondeGirar/Derecha3" to="." method="_on_derecha_area_entered"]
-[connection signal="area_entered" from="AreasDondeGirar/Abajo2" to="." method="_on_abajo_area_entered"]
+[connection signal="area_entered" from="Areas donde girar/Derecha" to="." method="_on_derecha_area_entered"]
+[connection signal="area_entered" from="Areas donde girar/Arriba" to="." method="_on_arriba_area_entered"]
+[connection signal="area_entered" from="Areas donde girar/Derecha2" to="." method="_on_derecha_area_entered"]
+[connection signal="area_entered" from="Areas donde girar/Abajo" to="." method="_on_abajo_area_entered"]
+[connection signal="area_entered" from="Areas donde girar/Derecha3" to="." method="_on_derecha_area_entered"]
+[connection signal="area_entered" from="Areas donde girar/Abajo2" to="." method="_on_abajo_area_entered"]

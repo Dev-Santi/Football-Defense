@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1q3uxxktsbpl"]
+
+[ext_resource type="PackedScene" uid="uid://cqjukihux6l8h" path="res://escenas/guerreros/guerrero.tscn" id="1_ovbsk"]
+[ext_resource type="Script" path="res://escenas/guerreros/baño_quimico.gd" id="2_bbmmm"]
+[ext_resource type="Texture2D" uid="uid://d0fere6cuqxt7" path="res://texturas/ME_Singles_Worksite_48x48_Portable_Toilet_2.png" id="2_rwau6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3dxp"]
+size = Vector2(98, 163)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ww0h"]
+radius = 200.844
+
+[node name="Baño Quimico" instance=ExtResource("1_ovbsk")]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_bbmmm")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_rwau6")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-1, 21.5)
+shape = SubResource("RectangleShape2D_r3dxp")
+
+[node name="CollisionShape2D" parent="Detector de enemigos" index="0"]
+shape = SubResource("CircleShape2D_7ww0h")

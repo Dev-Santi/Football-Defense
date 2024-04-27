@@ -7,9 +7,7 @@ func _process(_delta):
 	pass
 
 
-
-
-
+# Hacer girar a los enemigos por el camino
 func _on_derecha_area_entered(area):
 	if(area.is_in_group("Enemigos")):
 		area.setDireccion("derecha")
