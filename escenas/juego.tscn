@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmrxiho8rg1cm"]
+
+[ext_resource type="PackedScene" uid="uid://bmqxjsjsnf14c" path="res://escenas/niveles/tutorial.tscn" id="1_jxclu"]
+
+[node name="Juego" type="Node2D"]
+texture_filter = 1
+
+[node name="Tutorial" parent="." instance=ExtResource("1_jxclu")]
