@@ -32,3 +32,6 @@ position = Vector2(2, 17)
 [connection signal="area_exited" from="Detector de enemigos" to="." method="_on_detector_de_enemigos_area_exited"]
 [connection signal="area_entered" from="Detector de area valida" to="." method="_on_detector_de_area_valida_area_entered"]
 [connection signal="area_exited" from="Detector de area valida" to="." method="_on_detector_de_area_valida_area_exited"]
+[connection signal="body_entered" from="Detector de area valida" to="." method="_on_detector_de_area_valida_body_entered"]
+[connection signal="body_exited" from="Detector de area valida" to="." method="_on_detector_de_area_valida_body_exited"]
+[connection signal="input_event" from="Detector de area valida" to="." method="_on_detector_de_area_valida_input_event"]

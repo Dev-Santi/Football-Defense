@@ -17,7 +17,7 @@ size = Vector2(85, 11.3142)
 size = Vector2(586, 223)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dw2y"]
-size = Vector2(32, 62)
+size = Vector2(61, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksevg"]
 size = Vector2(87.125, 411)
@@ -102,10 +102,10 @@ position = Vector2(11, 19)
 [node name="Guerreros" type="Node2D" parent="." index="4"]
 
 [node name="Baño Quimico" parent="Guerreros" index="0" instance=ExtResource("5_0bpvy")]
-position = Vector2(340, 507)
+position = Vector2(360, 344)
 
 [node name="Baño Quimico2" parent="Guerreros" index="1" instance=ExtResource("5_0bpvy")]
-position = Vector2(98, 507)
+position = Vector2(152, 418)
 
 [node name="NPCS" type="Node2D" parent="." index="5"]
 
@@ -127,7 +127,7 @@ shape = SubResource("RectangleShape2D_visar")
 [node name="AreaValida2" parent="Areas validas para guerreros" index="1" instance=ExtResource("6_adc5i")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas validas para guerreros/AreaValida2" index="0"]
-position = Vector2(455, 143)
+position = Vector2(458.5, 104)
 shape = SubResource("RectangleShape2D_0dw2y")
 
 [node name="AreaValida3" parent="Areas validas para guerreros" index="2" instance=ExtResource("6_adc5i")]
@@ -175,4 +175,5 @@ metadata/_edit_lock_ = true
 [connection signal="area_entered" from="Areas donde girar/Abajo" to="." method="_on_abajo_area_entered"]
 [connection signal="area_entered" from="Areas donde girar/Derecha3" to="." method="_on_derecha_area_entered"]
 [connection signal="area_entered" from="Areas donde girar/Abajo2" to="." method="_on_abajo_area_entered"]
+[connection signal="child_entered_tree" from="Guerreros" to="." method="_on_guerreros_child_entered_tree"]
 [connection signal="area_entered" from="Meta" to="." method="_on_meta_area_entered"]

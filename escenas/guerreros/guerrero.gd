@@ -1,46 +1,13 @@
 extends StaticBody2D
 
-var puedeSeleccionarse:bool = false
-var estaSeleccionado:bool = false
+signal clickeado(body:StaticBody2D)
+var estaRojito:bool = false
+var seleccionado:bool = false
+var contactosConAreasValidas:int = 0
+var contactosConGuerreros:int = 0
 var cadenciaDeDisparo:float = 0.5
 var listoParaDisparar:bool = true
 var objetivos:Array = []
-var areasValidas:Array = []
-var estaEnZonaValida:bool = false
-
-func setEstaSeleccionado(valor:bool) -> void:
-	estaSeleccionado = valor
-
-func setPuedeSeleccionarse(valor:bool) -> void:
-	puedeSeleccionarse = valor
-
-func setCadenciaDeDisparo(valor:int) -> void:
-	cadenciaDeDisparo = valor
-	$"Cadencia de disparo".wait_time = cadenciaDeDisparo
-
-func setListoParaDisparar(valor:bool) -> void:
-	listoParaDisparar = valor
-
-func getEstaSeleccionado() -> bool:
-	return estaSeleccionado
-
-func getPuedeSeleccionarse() -> bool:
-	return puedeSeleccionarse
-
-func getCadenciaDeDisparo() -> float:
-	return cadenciaDeDisparo
-
-func getListoParaDisparar() -> bool:
-	return listoParaDisparar
-
-func getObjetivoActual():
-	return objetivos[0]
-
-func addObjetivo(nuevoObjetivo:Area2D) -> void:
-	objetivos.append(nuevoObjetivo)
-
-func delObjetivo(objetivo:Area2D) -> void:
-	objetivos.remove_at(objetivos.find(objetivo))
 
 
 
@@ -50,50 +17,65 @@ func _ready():
 	$"Cadencia de disparo".wait_time = cadenciaDeDisparo
 
 func _process(_delta):
-	if !objetivos.is_empty() && getListoParaDisparar():
-		disparar(getObjetivoActual())
-		
-	if getPuedeSeleccionarse() && Input.is_action_just_pressed("Click") && estaEnZonaValida:
-		setEstaSeleccionado(!getEstaSeleccionado())
-	if getEstaSeleccionado():
-		global_position = get_global_mouse_position()
-		$"Detector de enemigos/Sprite2D".visible = true
-	else:
-		$"Detector de enemigos/Sprite2D".visible = false
+	if !objetivos.is_empty() && listoParaDisparar:
+		disparar(objetivos[0])
+	
+	if !estaRojito && (contactosConAreasValidas == 0 || contactosConGuerreros > 0):
+		ponerRojito()
+	if estaRojito && contactosConAreasValidas > 0 && contactosConGuerreros == 0:
+		quitarRojito()
 
 func _on_detector_de_enemigos_area_entered(area):
 	if area.is_in_group("Enemigos"):
-		addObjetivo(area)
+		objetivos.append(area)
 
 func _on_detector_de_enemigos_area_exited(area):
 	if area.is_in_group("Enemigos"):
-		delObjetivo(area)
+		objetivos.remove_at(objetivos.find(area))
 
 func _on_cadencia_de_disparo_timeout():
-	setListoParaDisparar(true)
+	listoParaDisparar = true
 
-func _on_mouse_entered():
-	setPuedeSeleccionarse(true)
-
-func _on_mouse_exited():
-	setPuedeSeleccionarse(false)
+func _on_detector_de_area_valida_input_event(_viewport, event, _shape_idx):
+	if event.is_action_pressed("Click"):
+		clickeado.emit(self)
 
 func _on_detector_de_area_valida_area_entered(area):
 	if area.is_in_group("Areas validas"):
-		areasValidas.append(area)
-		estaEnZonaValida = true
-		$Sprite2D.modulate = Color.html("ffffff")
-		$"Detector de enemigos/Sprite2D".modulate = Color.html("ffffff")
+		contactosConAreasValidas += 1
 
 func _on_detector_de_area_valida_area_exited(area):
 	if area.is_in_group("Areas validas"):
-		areasValidas.remove_at(areasValidas.find(area))
-		if(areasValidas.is_empty()):
-			estaEnZonaValida = false
-			$Sprite2D.modulate = Color.html("ff3224")
-			$"Detector de enemigos/Sprite2D".modulate = Color.html("ffffff00") 
+		contactosConAreasValidas -= 1
+
+func _on_detector_de_area_valida_body_entered(body):
+	if body.is_in_group("Guerreros") && body != self:
+		contactosConGuerreros += 1
+
+func _on_detector_de_area_valida_body_exited(body):
+	if body.is_in_group("Guerreros") && body != self:
+		contactosConGuerreros -= 1
+
 
 
 func disparar(_objetivo:Area2D) -> void:
-	setListoParaDisparar(false)
+	listoParaDisparar = false
 	$"Cadencia de disparo".start()
+
+func seleccionar():
+	$"Detector de enemigos/Sprite2D".visible = true
+	seleccionado = true
+
+func deseleccionar():
+	$"Detector de enemigos/Sprite2D".visible = false
+	seleccionado = false
+
+func ponerRojito():
+	estaRojito = true
+	$Sprite2D.modulate = Color.html("ff4e3e")
+	$"Detector de enemigos/Sprite2D".visible = false
+
+func quitarRojito():
+	estaRojito = false
+	$Sprite2D.modulate = Color.html("ffffff")
+	$"Detector de enemigos/Sprite2D".visible = true
