@@ -5,6 +5,11 @@
 [node name="Guerrero" type="StaticBody2D"]
 script = ExtResource("1_grdy4")
 
+[node name="Proyectiles" type="Node2D" parent="."]
+
+[node name="Cadencia de disparo" type="Timer" parent="."]
+one_shot = true
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -14,4 +19,16 @@ script = ExtResource("1_grdy4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector de enemigos"]
 position = Vector2(2, 17)
 
+[node name="Sprite2D" type="Sprite2D" parent="Detector de enemigos"]
+
+[node name="Detector de area valida" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector de area valida"]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="Cadencia de disparo" to="." method="_on_cadencia_de_disparo_timeout"]
 [connection signal="area_entered" from="Detector de enemigos" to="." method="_on_detector_de_enemigos_area_entered"]
+[connection signal="area_exited" from="Detector de enemigos" to="." method="_on_detector_de_enemigos_area_exited"]
+[connection signal="area_entered" from="Detector de area valida" to="." method="_on_detector_de_area_valida_area_entered"]
+[connection signal="area_exited" from="Detector de area valida" to="." method="_on_detector_de_area_valida_area_exited"]

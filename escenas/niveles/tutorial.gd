@@ -19,3 +19,8 @@ func _on_arriba_area_entered(area):
 func _on_abajo_area_entered(area):
 	if(area.is_in_group("Enemigos")):
 		area.setDireccion("abajo")
+
+# Cuando los enemigos llegan a la meta
+func _on_meta_area_entered(area):
+	if(area.is_in_group("Enemigos")):
+		area.eliminar()

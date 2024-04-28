@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0qmhamoxp1jk"]
+
+[ext_resource type="Script" path="res://AreaValida.gd" id="1_w7a27"]
+
+[node name="AreaValida" type="Area2D"]
+script = ExtResource("1_w7a27")

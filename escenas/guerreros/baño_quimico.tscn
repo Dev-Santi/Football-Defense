@@ -1,25 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1q3uxxktsbpl"]
+[gd_scene load_steps=8 format=3 uid="uid://b1q3uxxktsbpl"]
 
 [ext_resource type="PackedScene" uid="uid://cqjukihux6l8h" path="res://escenas/guerreros/guerrero.tscn" id="1_ovbsk"]
 [ext_resource type="Script" path="res://escenas/guerreros/baño_quimico.gd" id="2_bbmmm"]
 [ext_resource type="Texture2D" uid="uid://d0fere6cuqxt7" path="res://texturas/ME_Singles_Worksite_48x48_Portable_Toilet_2.png" id="2_rwau6"]
+[ext_resource type="Texture2D" uid="uid://b65witte47ci6" path="res://texturas/circulito pa ver donde pega la balita.png" id="4_frgh0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r3dxp"]
-size = Vector2(98, 163)
+size = Vector2(81.25, 160.438)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ww0h"]
 radius = 200.844
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8a65j"]
+size = Vector2(75, 60)
 
 [node name="Baño Quimico" instance=ExtResource("1_ovbsk")]
 scale = Vector2(0.8, 0.8)
 script = ExtResource("2_bbmmm")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_rwau6")
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-1, 21.5)
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0.625001, 7.71874)
+scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_r3dxp")
 
 [node name="CollisionShape2D" parent="Detector de enemigos" index="0"]
 shape = SubResource("CircleShape2D_7ww0h")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" parent="Detector de enemigos" index="1"]
+visible = false
+position = Vector2(1.875, 19.375)
+scale = Vector2(0.8225, 0.8225)
+texture = ExtResource("4_frgh0")
+
+[node name="CollisionShape2D" parent="Detector de area valida" index="0"]
+position = Vector2(-2.5, 66.25)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_8a65j")
+metadata/_edit_lock_ = true
+
+[node name="Cerrar puerta del baño" type="Timer" parent="." index="6"]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Cerrar puerta del baño" to="." method="_on_cerrar_puerta_del_baño_timeout"]

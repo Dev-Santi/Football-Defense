@@ -1,6 +1,6 @@
 extends Area2D
 
-var velocidad:int = 150
+var velocidad:int = 100
 var direccion:String = "abajo"
 var vida = 100
 
@@ -42,8 +42,6 @@ func _process(delta):
 		position += Vector2(-1 * velocidad * delta,0)
 	else:
 		position += Vector2(0, -1 * velocidad * delta)
-
-
 
 func eliminar() -> void:
 	queue_free()

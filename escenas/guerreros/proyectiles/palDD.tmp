@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp8u70vtaocu7"]
+
+[ext_resource type="Texture2D" uid="uid://qx1xih521qlm" path="res://texturas/ME_Singles_Worksite_48x48_Shovel_1.png" id="1_0als1"]
+[ext_resource type="Script" path="res://escenas/guerreros/proyectiles/pala.gd" id="1_cyxoa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ge350"]
+size = Vector2(46, 25)
+
+[node name="Pala" type="Area2D"]
+script = ExtResource("1_cyxoa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-12, -0.5)
+shape = SubResource("RectangleShape2D_ge350")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.23911
+scale = Vector2(1, 1)
+texture = ExtResource("1_0als1")
