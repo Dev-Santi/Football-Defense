@@ -8,6 +8,7 @@ var proyectilPala:PackedScene = preload("res://escenas/guerreros/proyectiles/pal
 
 func _ready():
 	super._ready()
+	$"Cadencia de disparo".wait_time = 1
 
 
 

@@ -48,3 +48,8 @@ func eliminar() -> void:
 
 func quitarVida(cantidad:int) -> void:
 	setVida(getVida() - cantidad)
+	modulate = Color.html("ffa598")
+	$"Animacion de daño".start()
+
+func _on_animacion_de_daño_timeout():
+	modulate = Color.html("ffffff")

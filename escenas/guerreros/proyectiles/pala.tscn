@@ -16,7 +16,6 @@ shape = SubResource("RectangleShape2D_ge350")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -2.90248
-scale = Vector2(1, 1)
 texture = ExtResource("1_0als1")
 
 [node name="Limite para eliminarse" type="Timer" parent="."]

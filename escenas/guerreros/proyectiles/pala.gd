@@ -1,7 +1,7 @@
 extends Area2D
 
-var daño:int = 25
-var velocidad:int = 300
+var daño:int = 50
+var velocidad:int = 375
 var objetivo:Vector2 = Vector2(0,0)
 
 func setVelocidad(nuevaVelocidad:int) -> void:

@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bmqxjsjsnf14c"]
+[gd_scene load_steps=13 format=3 uid="uid://bmqxjsjsnf14c"]
 
 [ext_resource type="PackedScene" uid="uid://d3gioiclnkwjn" path="res://escenas/niveles/nivel.tscn" id="1_ni4m5"]
 [ext_resource type="PackedScene" uid="uid://c4p47ic3duy58" path="res://escenas/npcs/police.tscn" id="2_6x7bv"]
 [ext_resource type="Script" path="res://escenas/niveles/tutorial.gd" id="2_saiao"]
-[ext_resource type="PackedScene" uid="uid://ct0h1iyfj7620" path="res://escenas/enemigos/gallina.tscn" id="3_308ba"]
 [ext_resource type="PackedScene" uid="uid://b1q3uxxktsbpl" path="res://escenas/guerreros/baño_quimico.tscn" id="5_0bpvy"]
 [ext_resource type="PackedScene" uid="uid://c0qmhamoxp1jk" path="res://escenas/niveles/area_valida.tscn" id="6_adc5i"]
 
@@ -23,7 +22,7 @@ size = Vector2(61, 6)
 size = Vector2(87.125, 411)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wx7ke"]
-size = Vector2(2.1875, 136)
+size = Vector2(1.09375, 136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1oom"]
 size = Vector2(20, 118)
@@ -88,17 +87,6 @@ shape = SubResource("RectangleShape2D_yjulx")
 [node name="Enemigos" type="Node2D" parent="." index="3"]
 position = Vector2(192, -91)
 
-[node name="Gallina" parent="Enemigos" index="0" instance=ExtResource("3_308ba")]
-
-[node name="Gallina2" parent="Enemigos" index="1" instance=ExtResource("3_308ba")]
-position = Vector2(-9, -21)
-
-[node name="Gallina3" parent="Enemigos" index="2" instance=ExtResource("3_308ba")]
-position = Vector2(-9, 32)
-
-[node name="Gallina4" parent="Enemigos" index="3" instance=ExtResource("3_308ba")]
-position = Vector2(11, 19)
-
 [node name="Guerreros" type="Node2D" parent="." index="4"]
 
 [node name="Baño Quimico" parent="Guerreros" index="0" instance=ExtResource("5_0bpvy")]
@@ -116,7 +104,6 @@ position = Vector2(784, 574)
 position = Vector2(943, 574)
 
 [node name="Areas validas para guerreros" type="Node2D" parent="." index="6"]
-metadata/_edit_lock_ = true
 
 [node name="AreaValida" parent="Areas validas para guerreros" index="0" instance=ExtResource("6_adc5i")]
 
@@ -161,6 +148,12 @@ shape = SubResource("RectangleShape2D_wx7ke")
 position = Vector2(744.906, 484)
 shape = SubResource("RectangleShape2D_wx7ke")
 
+[node name="AreaValida8" parent="Areas validas para guerreros" index="7" instance=ExtResource("6_adc5i")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas validas para guerreros/AreaValida8" index="0"]
+position = Vector2(708.453, 436)
+shape = SubResource("RectangleShape2D_wx7ke")
+
 [node name="Meta" type="Area2D" parent="." index="7"]
 position = Vector2(867, 709)
 
@@ -168,6 +161,10 @@ position = Vector2(867, 709)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_i1oom")
 metadata/_edit_lock_ = true
+
+[node name="Spawn de gallinas" type="Timer" parent="." index="8"]
+one_shot = true
+autostart = true
 
 [connection signal="area_entered" from="Areas donde girar/Derecha" to="." method="_on_derecha_area_entered"]
 [connection signal="area_entered" from="Areas donde girar/Arriba" to="." method="_on_arriba_area_entered"]
@@ -177,3 +174,4 @@ metadata/_edit_lock_ = true
 [connection signal="area_entered" from="Areas donde girar/Abajo2" to="." method="_on_abajo_area_entered"]
 [connection signal="child_entered_tree" from="Guerreros" to="." method="_on_guerreros_child_entered_tree"]
 [connection signal="area_entered" from="Meta" to="." method="_on_meta_area_entered"]
+[connection signal="timeout" from="Spawn de gallinas" to="." method="_on_spawn_de_gallinas_timeout"]
